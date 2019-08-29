@@ -1,2 +1,0 @@
-# gracezarczynska
-My personal page
