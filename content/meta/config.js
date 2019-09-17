@@ -1,5 +1,5 @@
 module.exports = {
-  siteTitle: "Grace in Space - Developer blog", // <title>
+  siteTitle: "Grace in Space - Developer's blog", // <title>
   shortSiteTitle: "Grace in Space", // <title> ending for posts and pages
   siteDescription: "Javascript Developer Blog",
   siteUrl: "https://www.gracezarczynska.com",

@@ -73,6 +73,7 @@ class Header extends React.Component {
             top: 0;
             width: 100%;
             align-items: center;
+            z-index: 2;
 
             :global(a.logoType) {
               align-items: center;
@@ -128,7 +129,7 @@ class Header extends React.Component {
             display: block;
             position: absolute;
             bottom: 0;
-            z-index: 1;
+            z-index: 2;
             left: 0;
             right: 0;
             height: 1px;
@@ -164,7 +165,7 @@ class Header extends React.Component {
           @from-width desktop {
             .header {
               align-items: center;
-              background-color: ${theme.color.neutral.white};
+              background-color: ${theme.color.brand.primary};
               display: flex;
               position: absolute;
               top: 0;
@@ -180,7 +181,7 @@ class Header extends React.Component {
                 position: fixed;
                 top: 0;
                 width: 100%;
-                z-index: 1;
+                z-index: 2;
 
                 h1 {
                   margin: ${theme.space.stack.xxs};
