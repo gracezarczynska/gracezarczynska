@@ -1,8 +1,6 @@
 {
-  "name": "gatsby-starter-hero-blog",
-  "version": "2.0.0",
-  "author": "Greg Lobinski <greglobinski@gmail.com>",
-  "license": "MIT",
+  "name": "gracezarczynska.github.io",
+  "version": "1.0.0",
   "dependencies": {
     "antd": "^3.7.0",
     "fontfaceobserver": "^2.0.13",
