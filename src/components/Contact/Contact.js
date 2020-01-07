@@ -5,7 +5,7 @@ import Button from "antd/lib/button";
 import Form from "antd/lib/form";
 import Input from "antd/lib/input";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -15,6 +15,7 @@ import "antd/lib/button/style/index.css";
 import { ThemeContext } from "../../layouts";
 
 const Contact = props => {
+  const [status, setStatus] = useState("");
   const { getFieldDecorator } = props.form;
 
   function encode(data) {
@@ -28,25 +29,23 @@ const Contact = props => {
     props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        sendMessage(values);
+        const form = e.target;
+        const data = new FormData(form);
+        const xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState !== XMLHttpRequest.DONE) return;
+          if (xhr.status === 200) {
+            setStatus("SUCCESS");
+            navigate("/success");
+          } else {
+            setStatus("ERROR");
+          }
+        };
+        xhr.send(data);
       }
     });
-  }
-
-  function sendMessage(values) {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...values })
-    })
-      .then(() => {
-        console.log("Form submission success");
-        navigate("/success");
-      })
-      .catch(error => {
-        console.error("Form submission error:", error);
-        this.handleNetworkError();
-      });
   }
 
   function handleNetworkError(e) {
@@ -61,8 +60,8 @@ const Contact = props => {
             <Form
               name="contact"
               onSubmit={handleSubmit}
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
+              action="https://formspree.io/mvognpqp"
+              method="POST"
             >
               <FormItem label="Name">
                 {getFieldDecorator("name", {
